@@ -19,6 +19,7 @@ PFont font;
 
 void setup()
 {
+  size(512,480);
   height3 = height/3;
   height23 = 2*height/3;
 
@@ -46,7 +47,11 @@ void setup()
   fftLog.logAverages( 22, 3 );
   
   rectMode(CORNERS);
-  font = loadFont("ARIALMTNARROWITALIC.vlw");
+  /*Fonts from OS
+  String[] fontList = PFont.list(); //To list all fonts available on system
+  printArray(fontList); //For listing all possible fonts to choose, then createFont
+  */
+  font = loadFont("TimesNewRomanPSMT-25.vlw");
 }
 
 void draw()
@@ -54,7 +59,7 @@ void draw()
   background(0);
   
   textFont(font);
-  textSize( 18 );
+  textSize(25 );
   
  float centerFrequency = 0;
   

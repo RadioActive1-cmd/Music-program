@@ -1,3 +1,7 @@
+import processing.core.PFont;
+import processing.core.PShapeSVG.Font;
+import processing.core.PFont;
+import processing.core.PFont;
 //Minim Library: use Sketch / Import Library / Add Library
 //Minim Library: use Sketch / Import Library / Minim
 import ddf.minim.*;
@@ -16,7 +20,7 @@ int loopIntNum = 1; //Able to connect this variable to buttons, increasing the l
 int currentSong = numberOfSongs - numberOfSongs; //Formula based on previous variable
 
 void setupsetup(){
-  size(500, 400); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
+  size(1000,500); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
   minim = new Minim(this); // load from data directory, loadFile should also load from project folder, like loadimage
   //Note: array varaibles based on operators to describe 0, 1, 2
   //Formula patter: repeating formula easier to program
