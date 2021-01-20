@@ -5,17 +5,17 @@ import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
-import ddf.minim.ungens.*;
+import ddf.minim.ugens.*;
 
 // Global Variables
-Minim minim; //creates object to access all functions
+Minim minim_app; //creates object to access all functions
 int numberOfSongs = 3;
 AudioPlayer[] song = new AudioPlayer[numberOfSongs]; //create "play List" variable holding extentions WAV, AIFF, AU, SND, and MP3
 AudioMetaData[]  songMetaData = new AudioMetaData[numberOfSongs];
 int loopIntNum = 1; //Able to connect this variable to buttons, increasing the loop number //loopIntNum+1 //loopIntNum+=
 int currentSong = numberOfSongs - numberOfSongs; //Formula based on previous variable
 
-void setup() {
+void setupsetup(){
   size(500, 400); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
   minim = new Minim(this); // load from data directory, loadFile should also load from project folder, like loadimage
   //Note: array varaibles based on operators to describe 0, 1, 2
@@ -44,7 +44,7 @@ void setup() {
     println("Composer: ", songMetaData[i].composer() );
     println("Orchestra: ", songMetaData[i].orchestra() );
     println("Albums: ", songMetaData[i].album() );
-    println("Disk: ", songMetaData[i].disk() );
+    println("Disk: ", songMetaData[i].disc() );
     println("Publisher: ", songMetaData[i].publisher() );
     println("Date Release: ", songMetaData[i].date() );
     println("Copyright: ", songMetaData[i].copyright() );
@@ -57,14 +57,14 @@ void setup() {
   //
 }
 
-void draw() {
+void drawdraw() {
 }//End draw()
 
 void keyPressed() {
   //
   if ( key == 'p' || key == 'p' ) {//Play-Pause Button
-    if ( song1[currentSong].isPlaying() ) {
-      song1[currentSong].pause();
+    if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
     } else if ( song[currentSong].position() == song[currentSong].length() ) {//.legnth() = end
     song[currentSong].rewind();
     song[currentSong].play();
@@ -94,7 +94,7 @@ void keyPressed() {
     if ( song[currentSong].isPlaying() ) {
       song[currentSong].pause();
       song[currentSong].rewind();
-      if ( currentSong == numbersOfSongs-1 ) {
+      if ( currentSong == numberOfSongs-1 ) {
         currentSong = numberOfSongs - numberOfSongs;
       } else {
         currentSong++;
