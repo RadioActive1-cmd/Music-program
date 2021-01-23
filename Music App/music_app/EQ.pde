@@ -19,7 +19,6 @@ PFont font;
 
 void setup()
 {
-  size(512,480);
   height3 = height/3;
   height23 = 2*height/3;
 
