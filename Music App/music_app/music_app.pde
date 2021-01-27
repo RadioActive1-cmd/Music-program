@@ -30,11 +30,24 @@ AudioPlayer[] song = new AudioPlayer[numberOfSongs]; //create "play List" variab
 AudioMetaData[]  songMetaData = new AudioMetaData[numberOfSongs];
 int loopIntNum = 1; //Able to connect this variable to buttons, increasing the loop number //loopIntNum+1 //loopIntNum+=
 int currentSong = numberOfSongs - numberOfSongs; //Formula based on previous variable
+PFont rectMode;
+
+
 
 void setup()
 {
+  size(1000,500); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
+  minim = new Minim(this); // load from data directory, loadFile should also load from project folder, like loadimage
+  
   height3 = height/3;
   height23 = 2*height/3;
+  
+   rectMode(CORNERS);
+  /*Fonts from OS
+  String[] fontList = PFont.list(); //To list all fonts available on system
+  printArray(fontList); //For listing all possible fonts to choose, then createFont
+  */
+  font = loadFont("TimesNewRomanPSMT-25.vlw");
 
   minim = new Minim(this);
   jingle =  minim.getLineIn(); //minim.loadFile("jingle.mp3", 1024);
@@ -46,6 +59,8 @@ void setup()
   // note that this needs to be a power of two 
   // and that it means the size of the spectrum will be 1024. 
   // see the online tutorial for more info.
+  
+  
   fftLin = new FFT( jingle.bufferSize(), 1024);//jingle.sampleRate() );
   
   // calculate the averages by grouping frequency bands linearly. use 30 averages.
@@ -59,16 +74,9 @@ void setup()
   // this should result in 30 averages
   fftLog.logAverages( 22, 3 );
   
-  rectMode(CORNERS);
-  /*Fonts from OS
-  String[] fontList = PFont.list(); //To list all fonts available on system
-  printArray(fontList); //For listing all possible fonts to choose, then createFont
-  */
-  font = loadFont("TimesNewRomanPSMT-25.vlw");
-}
-void setupsetup(){
-  size(1000,500); //fullScreen(), displayWidth & displayHeight, leads to ScreenChecker()
-  minim = new Minim(this); // load from data directory, loadFile should also load from project folder, like loadimage
+
+
+  
   //Note: array varaibles based on operators to describe 0, 1, 2
   //Formula patter: repeating formula easier to program
   song[currentSong] = minim.loadFile("../Music/Just Dance.mp3"); //able to pass absoulute path, file name, and URL
@@ -115,7 +123,7 @@ void draw()
   textFont(font);
   textSize(25 );
   
- float centerFrequency = 0;
+ float CenterFrequency = 0;
   
   // perform a forward FFT on the samples in jingle's mix buffer
   // note that if jingle were a MONO file, this would be the same as using jingle.left or jingle.right
@@ -225,9 +233,7 @@ void keyPressed() {
       song[currentSong].rewind();
       if ( currentSong == numberOfSongs - numberOfSongs ) {
         currentSong = numberOfSongs-1;
-      } else {
-        currentSong--;
-      }
+      } else {currentSong--;}
       song[currentSong].play();
     } else {
       song[currentSong].rewind();
